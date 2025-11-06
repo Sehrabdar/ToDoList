@@ -30,6 +30,16 @@ app.put('/todos/:id', (req, res) =>
      }
      res.json({ message: `User with ID ${Userid} has been updated.`,   todos})
 });
+app.delete('/todos/:id', (req, res) => {
+     let Userid = parseInt(req.params.id);
+     const index = todos.findIndex(t => t.id === Userid);
+     if(index !== -1){
+          todos.splice(index,1);
+          res.json({message: 'Todo Deleted.'})
+     } else{
+          res.json({message: 'Todo not found'})
+     }
+});
 
 const port = 3000;
 app.listen(3000, () => 
